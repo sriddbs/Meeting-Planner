@@ -1,16 +1,16 @@
 require_relative "meeting_planner"
+require_relative "parser"
 
 class Main
   file = ARGV[0]
   if file.nil?
     puts "Error: No input file specified"
   else
-    planner = MeetingPlanner.new file
+    p = Parser.new(file)
+    meetings = p.read_file
+
+    planner = MeetingPlanner.new(meetings)
     planner.schedule
-    if planner.contents.empty?
-      puts "Error: No input content supplied"
-    else
-      planner.output_meetings
-    end
+    planner.output_meetings
   end
 end

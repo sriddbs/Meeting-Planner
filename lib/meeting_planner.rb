@@ -1,30 +1,22 @@
 require_relative "room"
 
 class MeetingPlanner
-  attr_accessor :room, :contents
+  attr_accessor :rooms, :meetings
 
   MORNING_SESSION_MINUTES = 180
   AFTERNOON_SESSION_MINUTES = 240
   MORNING_SESSION_STARTS_AT = Time.parse("9:00 AM")
   AFTERNOON_SESSION_STARTS_AT = Time.parse("1:00 PM")
 
-  def initialize file
-    @contents = IO.readlines(File.open(file))
+  def initialize meetings
+    @meetings = meetings
     @rooms = [Room.new, Room.new]
   end
 
   def schedule
-    meetings = []
-    @contents.each do |line|
-      last_pos = line.chomp.rindex(/\s/)
-      meeting_name = line[0..last_pos].strip
-      meeting_duration = line[(last_pos + 1)..line.length].strip
-      meetings << Meeting.new(meeting_name, meeting_duration)
-    end
-
     @rooms.each_with_index do |r, i|
       morning_session_time = afternoon_session_time = nil
-      available_meetings = meetings.reject { |m| m.scheduled }
+      available_meetings = @meetings.reject { |m| m.scheduled }
 
       available_meetings.each_with_index do |m, i|
         if r.morning_session_meetings.map(&:duration).inject(:+).to_i + m.duration <= MORNING_SESSION_MINUTES
