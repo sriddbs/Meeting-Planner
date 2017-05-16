@@ -21,17 +21,18 @@ solutions, and your output doesn't have to match it as long as it meets all cons
 
 The algorithm iterates over the meetings list, pick one by one and adds its to the meeting room by differentiating between morning and afternoon session
 
-1.Create 2 empty rooms
-2.Pick up a meeting
-3.If total length + meeting length < morning session time, append to Room and return to (2), else
-4.If total length + meeting length < afternoon session time, append to Room and return to (2), else
-5.Iterate over Meetings except the scheduled ones
-6.Repeat steps 2 to 4 for Room 2
+1. Create 2 empty rooms
+2. Pick up a meeting
+3. If total length + meeting length < morning session time, append to Room and return to (2), else
+4. If total length + meeting length < afternoon session time, append to Room and return to (2), else
+5. Iterate over Meetings except the scheduled ones
+6. Repeat steps 2 to 4 for Room 2
 
 # How to Run
 ruby lib/main.rb input_1.txt
 
 # Output
+```
 Room 1
 09:00 AM All Hands meeting 60
 10:00 AM Marketing presentation 30
@@ -55,8 +56,10 @@ Room 2
 02:00 PM Back-end coding interview B 60
 03:00 PM Back-end coding interview C 60
 04:00 PM Sprint planning 45
-
+```
 # Tests
 rpsec
+```
 Finished in 0.06361 seconds (files took 0.97414 seconds to load)
 8 examples, 0 failures
+```
