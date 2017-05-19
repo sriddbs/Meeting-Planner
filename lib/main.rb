@@ -9,8 +9,12 @@ class Main
     p = Parser.new(file)
     meetings = p.read_file
 
-    planner = MeetingPlanner.new(meetings)
-    planner.schedule
-    planner.output_meetings
+    if meetings.empty?
+      puts "No meetings to schedule"
+    else
+      planner = MeetingPlanner.new(meetings)
+      planner.schedule
+      planner.output_meetings
+    end
   end
 end
